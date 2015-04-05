@@ -1,4 +1,4 @@
-CyanogenMod
+BlackBox-OS
 ===============
 
 Visit http://github.com/BlacBox-OS for full source and git access.
