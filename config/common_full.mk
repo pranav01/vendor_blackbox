@@ -2,7 +2,7 @@
 $(call inherit-product, vendor/BlackBox/config/common.mk)
 
 # Include BlackBox audio files
-include vendor/BlackBox/config/cm_audio.mk
+include vendor/BlackBox/config/blackbox_audio.mk
 
 # Include BlackBox LatinIME dictionaries
 PRODUCT_PACKAGE_OVERLAYS += vendor/BlackBox/overlay/dictionaries
