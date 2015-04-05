@@ -1,13 +1,13 @@
-# Inherit common CM stuff
-$(call inherit-product, vendor/cm/config/common.mk)
+# Inherit common BlackBox stuff
+$(call inherit-product, vendor/BlackBox/config/common.mk)
 
-# Include CM audio files
-include vendor/cm/config/cm_audio.mk
+# Include BlackBox audio files
+include vendor/BlackBox/config/cm_audio.mk
 
-# Include CM LatinIME dictionaries
-PRODUCT_PACKAGE_OVERLAYS += vendor/cm/overlay/dictionaries
+# Include BlackBox LatinIME dictionaries
+PRODUCT_PACKAGE_OVERLAYS += vendor/BlackBox/overlay/dictionaries
 
-# Optional CM packages
+# Optional BlackBox packages
 PRODUCT_PACKAGES += \
     Galaxy4 \
     HoloSpiralWallpaper \
@@ -21,7 +21,7 @@ PRODUCT_PACKAGES += \
     SoundRecorder \
     PhotoPhase
 
-# Extra tools in CM
+# Extra tools in BlackBox
 PRODUCT_PACKAGES += \
     vim \
     zip \
