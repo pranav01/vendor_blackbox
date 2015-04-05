@@ -1,7 +1,7 @@
 BlackBox-OS
 ===============
 
-Visit http://github.com/BlacBox-OS for full source and git access.
+Visit https://github.com/BlackBox-OS for full source and git access.
 
 
 CHANGELOG (notable new features)
