@@ -73,7 +73,7 @@ endif
 
 # Copy over the changelog to the device
 PRODUCT_COPY_FILES += \
-    vendor/BlackBox/CHANGELOG.mkdn:system/etc/CHANGELOG-CM.txt
+    vendor/BlackBox/CHANGELOG.mkdn:system/etc/BlackBox-Changelog.txt
 
 # Backup Tool
 ifneq ($(WITH_GMS),true)
@@ -212,8 +212,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_PACKAGE_OVERLAYS += vendor/BlackBox/overlay/common
 
-PRODUCT_VERSION_MAJOR = 12
-PRODUCT_VERSION_MINOR = 1
+PRODUCT_VERSION_MAJOR = 1
+PRODUCT_VERSION_MINOR = 0
 PRODUCT_VERSION_MAINTENANCE = 0-RC0
 
 # Set BlackBox_BUILDTYPE from the env RELEASE_TYPE, for jenkins compat
