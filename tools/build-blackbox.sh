@@ -77,6 +77,32 @@ echo ""
 sleep 2s
 #Clear terminal
 clear
+# Confirm fetching prebuilts
+echo -e "\n\n${bldgrn}  Do you want to fetch prebuilts?\n  (You don't need to fetch them frequently)"
+echo ""
+echo -e "${bldblu}  Yes > Enter 1"
+echo -e "${bldblu}  No > Enter anything else"
+echo ""
+echo ""
+$normal
+read askPrebuilts
+
+echo ""
+echo ""
+if [ "$askPrebuilts" == "1" ]
+then
+    echo -e "${bldred}  Prebuilts will be fetched... "
+    $normal
+    cd vendor/BlackBox
+    ./get-prebuilts
+    croot  
+else
+    echo -e "${bldred}  Prebuilts won't be fetched... "
+fi
+echo ""
+echo ""
+
+
 echo -e ""
 echo -e ""
 echo -e "Choose your device from the lunch menu being displayed. Enter the number of your device"
@@ -98,11 +124,11 @@ read threads
 $normal
 if [ "$threads" == "0" ]
 then
-    time mka bacon
-    #or mka blackbox? Depends on what you want?
+    time mka blackbox
+    
   else
-    time make -j$threads bacon
-    #or make blackbox?
+    time make -j$threads blackbox
+    
 fi
 echo -e ""
 # Get elapsed time
