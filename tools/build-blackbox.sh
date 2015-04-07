@@ -124,11 +124,9 @@ read threads
 $normal
 if [ "$threads" == "0" ]
 then
-    time mka blackbox
-    
+    time mka bacon
   else
-    time make -j$threads blackbox
-    
+    time make -j$threads bacon
 fi
 echo -e ""
 # Get elapsed time
