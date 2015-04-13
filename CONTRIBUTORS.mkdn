@@ -3,16 +3,21 @@ BlackBox-OS
 
 Developers (5.1):
 -----------------------------
-* __Lead Developers:__ kunalkene1797, Buda1996, akhilnarang.
+* __Founder:__ kunalkene1797.
+* __Lead Developers:__ kunalkene1797, akhilnarang.
+* __Developers:__ bishalgoswami,radosbuda.
 
 Maintainers:
 -------------------
-* __Android One:__ kunalkene1797
-* __YU Yureka:__ pranav03
+* __Nexus Line:__ kunalkene1797.
+* __Android One:__ kunalkene1797.
+* __One Plus One:__ akhilnarang.
+* __YU Yureka:__ pranav03.
 
 Graphics and Assets:
 --------------------
-*WIP
+* __Graphics-Lead:__ vishalrai.
+* __Graphics:__ bishalgoswami.
 
 Basing:
 --------------------
