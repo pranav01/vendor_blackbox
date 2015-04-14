@@ -143,11 +143,11 @@ PRODUCT_PACKAGES += \
     CMFileManager \
     Eleven \
     LockClock \
-    CMUpdater \
+    OTAUpdater \
     CMAccount \
     CMHome \
-    CyanogenSetupWizard
-
+    CyanogenSetupWizard 
+    
 # BlackBox Hardware Abstraction Framework
 PRODUCT_PACKAGES += \
     org.cyanogenmod.hardware \
