@@ -4,7 +4,7 @@
 #
 
 BOARD_SEPOLICY_DIRS += \
-    vendor/Blackbox/sepolicy
+    vendor/BlackBox/sepolicy
 
 BOARD_SEPOLICY_UNION += \
     file.te \
