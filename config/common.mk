@@ -93,9 +93,11 @@ PRODUCT_COPY_FILES += \
     vendor/BlackBox/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
     vendor/BlackBox/prebuilt/common/bin/sysinit:system/bin/sysinit
 
+ifneq ($(TARGET_BUILD_VARIANT),user)
 # userinit support
 PRODUCT_COPY_FILES += \
     vendor/BlackBox/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
+endif
 
 # BlackBox-specific init file
 PRODUCT_COPY_FILES += \
@@ -125,7 +127,8 @@ include vendor/BlackBox/config/themes_common.mk
 PRODUCT_PACKAGES += \
     Development \
     LatinIME \
-    BluetoothExt
+    BluetoothExt \
+    Profiles
 
 # Optional BlackBox packages
 PRODUCT_PACKAGES += \
@@ -145,10 +148,16 @@ PRODUCT_PACKAGES += \
     LockClock \
     OTAUpdater \
     CMAccount \
-    CMHome \
-    CyanogenSetupWizard 
-    
-# BlackBox Hardware Abstraction Framework
+    CMHome \  
+    CyanogenSetupWizard
+
+# CM Platform Library
+PRODUCT_PACKAGES += \
+    org.cyanogenmod.platform-res \
+    org.cyanogenmod.platform \
+    org.cyanogenmod.platform.xml
+
+# CM Hardware Abstraction Framework
 PRODUCT_PACKAGES += \
     org.cyanogenmod.hardware \
     org.cyanogenmod.hardware.xml
