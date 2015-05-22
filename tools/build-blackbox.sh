@@ -95,7 +95,7 @@ then
     $normal
     cd vendor/BlackBox
     ./get-prebuilts
-    croot  
+    croot
 else
     echo -e "${bldred}  Prebuilts won't be fetched... "
 fi
@@ -124,9 +124,9 @@ read threads
 $normal
 if [ "$threads" == "0" ]
 then
-    time mka bacon
+    time mka blackbox
   else
-    time make -j$threads bacon
+    time make -j$threads blackbox
 fi
 echo -e ""
 # Get elapsed time
