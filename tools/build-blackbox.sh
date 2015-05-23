@@ -102,7 +102,7 @@ fi
 echo ""
 echo ""
 
-if [ "$1" -eq "" ]
+if [ "$1" ==  "" ]
 then
 echo -e ""
 echo -e ""
@@ -123,7 +123,7 @@ echo -e ""
 echo -e "${bldcya}  Starting compilation of BlackBox OS..."
 echo -e ""
 echo -e ""
-if [ $2 -ne "" ]
+if [ ! "$2" == "" ]
 then
 threads=$2
 $normal
