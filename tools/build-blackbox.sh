@@ -93,7 +93,7 @@ if [ "$askPrebuilts" == "1" ]
 then
     echo -e "${bldred}  Prebuilts will be fetched... "
     $normal
-    cd vendor/BlackBox/tools
+    cd vendor/blackbox/tools
     ./get-prebuilts
     croot
 else

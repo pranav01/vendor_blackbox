@@ -1,7 +1,7 @@
-# Inherit common BlackBox stuff
-$(call inherit-product, vendor/BlackBox/config/common.mk)
+# Inherit common blackbox stuff
+$(call inherit-product, vendor/blackbox/config/common.mk)
 
-# Include BlackBox audio files
+# Include blackbox audio files
 include vendor/cm/config/cm_audio.mk
 
 # Default notification/alarm sounds
@@ -11,5 +11,5 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 ifeq ($(TARGET_SCREEN_WIDTH) $(TARGET_SCREEN_HEIGHT),$(space))
     PRODUCT_COPY_FILES += \
-        vendor/BlackBox/prebuilt/common/bootanimation/800.zip:system/media/bootanimation.zip
+        vendor/blackbox/prebuilt/common/bootanimation/800.zip:system/media/bootanimation.zip
 endif

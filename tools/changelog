@@ -2,7 +2,7 @@
 
 # Exports
 
-. $ANDROID_BUILD_TOP/vendor/BlackBox/tools/colours
+. $ANDROID_BUILD_TOP/vendor/blackbox/tools/colours
 
 export Changelog=Changelog.txt
 
