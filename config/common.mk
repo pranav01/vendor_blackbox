@@ -148,7 +148,7 @@ PRODUCT_PACKAGES += \
     LockClock \
     OTAUpdater \
     CMAccount \
-    CMHome \  
+    CMHome \
     CyanogenSetupWizard
 
 # CM Platform Library
