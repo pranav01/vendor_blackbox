@@ -102,7 +102,8 @@ fi
 echo ""
 echo ""
 
-
+if [ "$1" -eq "" ]
+then
 echo -e ""
 echo -e ""
 echo -e "Choose your device from the lunch menu being displayed. Enter the number of your device"
@@ -111,6 +112,9 @@ echo -e ""
 $normal
 $green
 lunch
+else
+lunch blackbox_$1-userdebug
+fi
 # Clear terminal
 clear
 # Start compilation
@@ -119,14 +123,18 @@ echo -e ""
 echo -e "${bldcya}  Starting compilation of BlackBox OS..."
 echo -e ""
 echo -e ""
-echo -e "Enter number of threads to use for compilation, 0 if you don't know"
-read threads
+if [ $2 -ne "" ]
+then
+threads=$2
 $normal
 if [ "$threads" == "0" ]
 then
     time mka blackbox
   else
     time make -j$threads blackbox
+fi
+else
+time mka blackbox
 fi
 echo -e ""
 # Get elapsed time
