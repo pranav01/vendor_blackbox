@@ -1,9 +1,9 @@
 #!/bin/bash
 #
 # Squish a BlackBox otapackage for distribution
-# cyanogen
+#
 
-. $ANDROID_BUILD_TOP/vendor/BlackBox/tools/colours
+. $ANDROID_BUILD_TOP/vendor/blackbox/tools/colours
 
 OUT_TARGET_HOST=`uname -s`
 if [ x"$OUT_TARGET_HOST" = x"Linux" ]
@@ -24,7 +24,7 @@ if [ -z "$OUT" -o ! -d "$OUT" ]; then
 	exit 1
 fi
 
-OPTICHARGER=$ANDROID_BUILD_TOP/vendor/BlackBox/tools/opticharger
+OPTICHARGER=$ANDROID_BUILD_TOP/vendor/blackbox/tools/opticharger
 QUIET=-q
 DELETE_BINS="applypatch applypatch_static check_prereq recovery updater"
 
@@ -32,7 +32,7 @@ DELETE_BINS="applypatch applypatch_static check_prereq recovery updater"
 ( cd $OUT/system; find framework/ app/ priv-app/ vendor/ app/ -name \*.apk -print | $XARGS $OPTICHARGER; )
 
 # Add changelog
-. $ANDROID_BUILD_TOP/vendor/BlackBox/tools/changelog
+. $ANDROID_BUILD_TOP/vendor/blackbox/tools/changelog
 mv $OUT/Changelog.txt $OUT/Changelog.txt
 
 exit 0

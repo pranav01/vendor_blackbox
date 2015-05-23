@@ -1,11 +1,11 @@
 # Inherit common BlackBox stuff
-$(call inherit-product, vendor/BlackBox/config/common.mk)
+$(call inherit-product, vendor/blackbox/config/common.mk)
 
 # Include BlackBox audio files
-include vendor/BlackBox/config/cm_audio.mk
+include vendor/blackbox/config/cm_audio.mk
 
 # Include BlackBox LatinIME dictionaries
-PRODUCT_PACKAGE_OVERLAYS += vendor/BlackBox/overlay/dictionaries
+PRODUCT_PACKAGE_OVERLAYS += vendor/blackbox/overlay/dictionaries
 
 # Optional BlackBox packages
 PRODUCT_PACKAGES += \

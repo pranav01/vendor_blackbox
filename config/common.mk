@@ -10,7 +10,7 @@ TARGET_BOOTANIMATION_SIZE := $(shell \
   fi )
 
 # get a sorted list of the sizes
-bootanimation_sizes := $(subst .zip,, $(shell ls vendor/BlackBox/prebuilt/common/bootanimation))
+bootanimation_sizes := $(subst .zip,, $(shell ls vendor/blackbox/prebuilt/common/bootanimation))
 bootanimation_sizes := $(shell echo -e $(subst $(space),'\n',$(bootanimation_sizes)) | sort -rn)
 
 # find the appropriate size and set
@@ -27,9 +27,9 @@ endef
 $(foreach size,$(bootanimation_sizes), $(call check_and_set_bootanimation,$(size)))
 
 ifeq ($(TARGET_BOOTANIMATION_HALF_RES),true)
-PRODUCT_BOOTANIMATION := vendor/BlackBox/prebuilt/common/bootanimation/halfres/$(TARGET_BOOTANIMATION_NAME).zip
+PRODUCT_BOOTANIMATION := vendor/blackbox/prebuilt/common/bootanimation/halfres/$(TARGET_BOOTANIMATION_NAME).zip
 else
-PRODUCT_BOOTANIMATION := vendor/BlackBox/prebuilt/common/bootanimation/$(TARGET_BOOTANIMATION_NAME).zip
+PRODUCT_BOOTANIMATION := vendor/blackbox/prebuilt/common/bootanimation/$(TARGET_BOOTANIMATION_NAME).zip
 endif
 endif
 
@@ -73,40 +73,40 @@ endif
 
 # Copy over the changelog to the device
 PRODUCT_COPY_FILES += \
-    vendor/BlackBox/CHANGELOG.mkdn:system/etc/BlackBox-Changelog.txt
+    vendor/blackbox/CHANGELOG.mkdn:system/etc/BlackBox-Changelog.txt
 
 # Backup Tool
 ifneq ($(WITH_GMS),true)
 PRODUCT_COPY_FILES += \
-    vendor/BlackBox/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
-    vendor/BlackBox/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/BlackBox/prebuilt/common/bin/50-cm.sh:system/addon.d/50-cm.sh \
-    vendor/BlackBox/prebuilt/common/bin/blacklist:system/addon.d/blacklist
+    vendor/blackbox/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
+    vendor/blackbox/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
+    vendor/blackbox/prebuilt/common/bin/50-cm.sh:system/addon.d/50-cm.sh \
+    vendor/blackbox/prebuilt/common/bin/blacklist:system/addon.d/blacklist
 endif
 
 # Signature compatibility validation
 PRODUCT_COPY_FILES += \
-    vendor/BlackBox/prebuilt/common/bin/otasigcheck.sh:install/bin/otasigcheck.sh
+    vendor/blackbox/prebuilt/common/bin/otasigcheck.sh:install/bin/otasigcheck.sh
 
 # init.d support
 PRODUCT_COPY_FILES += \
-    vendor/BlackBox/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
-    vendor/BlackBox/prebuilt/common/bin/sysinit:system/bin/sysinit
+    vendor/blackbox/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
+    vendor/blackbox/prebuilt/common/bin/sysinit:system/bin/sysinit
 
 ifneq ($(TARGET_BUILD_VARIANT),user)
 # userinit support
 PRODUCT_COPY_FILES += \
-    vendor/BlackBox/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
+    vendor/blackbox/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
 endif
 
 # BlackBox-specific init file
 PRODUCT_COPY_FILES += \
-    vendor/BlackBox/prebuilt/common/etc/init.local.rc:root/init.cm.rc
+    vendor/blackbox/prebuilt/common/etc/init.local.rc:root/init.cm.rc
 
 # Bring in camera effects
 PRODUCT_COPY_FILES +=  \
-    vendor/BlackBox/prebuilt/common/media/LMprec_508.emd:system/media/LMprec_508.emd \
-    vendor/BlackBox/prebuilt/common/media/PFFprec_600.emd:system/media/PFFprec_600.emd
+    vendor/blackbox/prebuilt/common/media/LMprec_508.emd:system/media/LMprec_508.emd \
+    vendor/blackbox/prebuilt/common/media/PFFprec_600.emd:system/media/PFFprec_600.emd
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -118,10 +118,10 @@ PRODUCT_COPY_FILES += \
 
 # This is BlackBox!
 PRODUCT_COPY_FILES += \
-    vendor/BlackBox/config/permissions/com.cyanogenmod.android.xml:system/etc/permissions/com.cyanogenmod.android.xml
+    vendor/blackbox/config/permissions/com.cyanogenmod.android.xml:system/etc/permissions/com.cyanogenmod.android.xml
 
 # T-Mobile theme engine
-include vendor/BlackBox/config/themes_common.mk
+include vendor/blackbox/config/themes_common.mk
 
 # Required BlackBox packages
 PRODUCT_PACKAGES += \
@@ -146,8 +146,6 @@ PRODUCT_PACKAGES += \
     CMFileManager \
     Eleven \
     LockClock \
-    OTAUpdater \
-    CMAccount \
     CMHome \
     CyanogenSetupWizard
 
@@ -219,7 +217,7 @@ endif
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.root_access=0
 
-PRODUCT_PACKAGE_OVERLAYS += vendor/BlackBox/overlay/common
+PRODUCT_PACKAGE_OVERLAYS += vendor/blackbox/overlay/common
 
 PRODUCT_VERSION_MAJOR = RC-1
 PRODUCT_VERSION_MINOR = 0
@@ -297,7 +295,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
   ro.modversion=$(BlackBox_VERSION) \
   ro.BlackBoxlegal.url=https://blacbox-os.gq
 
--include vendor/BlackBox-priv/keys/keys.mk
+-include vendor/blackbox-priv/keys/keys.mk
 
 BlackBox_DISPLAY_VERSION := $(BlackBox_VERSION)
 
@@ -320,7 +318,7 @@ ifneq ($(PRODUCT_DEFAULT_DEV_CERTIFICATE),build/target/product/security/testkey)
 endif
 endif
 # Squisher Path (Test)
-SQUISHER_SCRIPT := vendor/BlackBox/tools/squisher
+SQUISHER_SCRIPT := vendor/blackbox/tools/squisher
 # by default, do not update the recovery with system updates
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.recovery_update=false
 
