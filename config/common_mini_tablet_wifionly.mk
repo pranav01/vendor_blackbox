@@ -4,6 +4,10 @@ $(call inherit-product, vendor/blackbox/config/common.mk)
 # Include blackbox audio files
 include vendor/cm/config/cm_audio.mk
 
+# Required CM packages
+PRODUCT_PACKAGES += \
+    LatinIME
+
 # Default notification/alarm sounds
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.config.notification_sound=Argon.ogg \

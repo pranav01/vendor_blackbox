@@ -133,7 +133,6 @@ include vendor/blackbox/config/themes_common.mk
 # Required BlackBox packages
 PRODUCT_PACKAGES += \
     Development \
-    LatinIME \
     BluetoothExt \
     Profiles
 
