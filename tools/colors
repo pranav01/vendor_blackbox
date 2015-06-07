@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ ! "$BUILD_WITH_COLOURS" = "0" ]; then
+if [ ! "$BUILD_WITH_COLORS" = "0" ]; then
     red=$(tput setaf 1)             #  red
     grn=$(tput setaf 2)             #  green
     ylw=$(tput setaf 3)             #  yellow
@@ -15,9 +15,10 @@ if [ ! "$BUILD_WITH_COLOURS" = "0" ]; then
     bldppl=${txtbld}$(tput setaf 5) #  purple
     bldcya=${txtbld}$(tput setaf 6) #  cyan
     txtrst=$(tput sgr0)             #  Reset
-    rev=$(tput rev)                 #  Reverse colour
+    rev=$(tput rev)                 #  Reverse color
     pplrev=${rev}$(tput setaf 5)
     cyarev=${rev}$(tput setaf 6)
     ylwrev=${rev}$(tput setaf 3)
     blurev=${rev}$(tput setaf 4)
+    normal='tput sgr0'
 fi

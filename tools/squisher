@@ -1,9 +1,9 @@
 #!/bin/bash
 #
 # Squish a BlackBox otapackage for distribution
-#
+# cyanogen
 
-. $ANDROID_BUILD_TOP/vendor/blackbox/tools/colours
+. $ANDROID_BUILD_TOP/vendor/blackbox/tools/colors
 
 OUT_TARGET_HOST=`uname -s`
 if [ x"$OUT_TARGET_HOST" = x"Linux" ]
