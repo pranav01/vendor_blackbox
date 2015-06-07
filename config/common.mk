@@ -33,13 +33,6 @@ PRODUCT_BOOTANIMATION := vendor/blackbox/prebuilt/common/bootanimation/$(TARGET_
 endif
 endif
 
-ifdef BlackBox_NIGHTLY
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.rommanager.developerid=cyanogenmodnightly
-else
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.rommanager.developerid=cyanogenmod
-endif
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
@@ -152,8 +145,7 @@ PRODUCT_PACKAGES += \
     CMFileManager \
     Eleven \
     LockClock \
-    CMHome \
-    CyanogenSetupWizard
+    CMHome
 
 # CM Platform Library
 PRODUCT_PACKAGES += \
@@ -225,114 +217,42 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_PACKAGE_OVERLAYS += vendor/blackbox/overlay/common
 
-PRODUCT_VERSION_MAJOR = RC-1
-PRODUCT_VERSION_MINOR = 0
-PRODUCT_VERSION_MAINTENANCE = 0-RC0
+# version
+BLACKBOX_VERSION_MAIN = RC
+BLACKBOX_VERSION_MAJOR = 1
+BLACKBOX_VERSION_MINOR = 0
 
-# Set BlackBox_BUILDTYPE from the env RELEASE_TYPE, for jenkins compat
-
-ifndef BlackBox_BUILDTYPE
-    ifdef RELEASE_TYPE
-        # Starting with "BlackBox_" is optional
-        RELEASE_TYPE := $(shell echo $(RELEASE_TYPE) | sed -e 's|^BlackBox_||g')
-        BlackBox_BUILDTYPE := $(RELEASE_TYPE)
-    endif
-endif
-
-# Filter out random types, so it'll reset to UNOFFICIAL
-ifeq ($(filter RELEASE NIGHTLY SNAPSHOT EXPERIMENTAL,$(BlackBox_BUILDTYPE)),)
-    BlackBox_BUILDTYPE :=
-endif
-
-ifdef BlackBox_BUILDTYPE
-    ifneq ($(BlackBox_BUILDTYPE), SNAPSHOT)
-        ifdef BlackBox_EXTRAVERSION
-            # Force build type to EXPERIMENTAL
-            BlackBox_BUILDTYPE := EXPERIMENTAL
-            # Remove leading dash from BlackBox_EXTRAVERSION
-            BlackBox_EXTRAVERSION := $(shell echo $(BlackBox_EXTRAVERSION) | sed 's/-//')
-            # Add leading dash to BlackBox_EXTRAVERSION
-            BlackBox_EXTRAVERSION := -$(BlackBox_EXTRAVERSION)
-        endif
-    else
-        ifndef BlackBox_EXTRAVERSION
-            # Force build type to EXPERIMENTAL, SNAPSHOT mandates a tag
-            BlackBox_BUILDTYPE := EXPERIMENTAL
-        else
-            # Remove leading dash from BlackBox_EXTRAVERSION
-            BlackBox_EXTRAVERSION := $(shell echo $(BlackBox_EXTRAVERSION) | sed 's/-//')
-            # Add leading dash to BlackBox_EXTRAVERSION
-            BlackBox_EXTRAVERSION := -$(BlackBox_EXTRAVERSION)
-        endif
-    endif
+# release
+ifeq ($(BLACKBOX_RELEASE),true)
+    BLACKBOX_VERSION := BlackBox-OS-$(BLACKBOX_BUILD)-$(BLACKBOX_VERSION_MAIN)-$(BLACKBOX_VERSION_MAJOR).$(BLACKBOX_VERSION_MINOR)-OFFICIAL-$(shell date -u +%d.%m.%y)
 else
-    # If BlackBox_BUILDTYPE is not defined, set to UNOFFICIAL
-    BlackBox_BUILDTYPE := UNOFFICIAL
-    BlackBox_EXTRAVERSION :=
-endif
-
-ifeq ($(BlackBox_BUILDTYPE), UNOFFICIAL)
-    ifneq ($(TARGET_UNOFFICIAL_BUILD_ID),)
-        BlackBox_EXTRAVERSION := -$(TARGET_UNOFFICIAL_BUILD_ID)
-    endif
-endif
-
-ifeq ($(BlackBox_BUILDTYPE), RELEASE)
-    ifndef TARGET_VENDOR_RELEASE_BUILD_ID
-        BlackBox_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(BlackBox_BUILD)
-    else
-        ifeq ($(TARGET_BUILD_VARIANT),user)
-            BlackBox_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)-$(BlackBox_BUILD)
-        else
-            BlackBox_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR).$(PRODUCT_VERSION_MAINTENANCE)$(PRODUCT_VERSION_DEVICE_SPECIFIC)-$(BlackBox_BUILD)
-        endif
-    endif
-else
-    ifeq ($(PRODUCT_VERSION_MINOR),0)
-        BlackBox_VERSION := $(PRODUCT_VERSION_MAJOR)-$(shell date -u +%Y%m%d)-$(BlackBox_BUILDTYPE)$(BlackBox_EXTRAVERSION)-$(BlackBox_BUILD)
-    else
-        BlackBox_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(shell date -u +%Y%m%d)-$(BlackBox_BUILDTYPE)$(BlackBox_EXTRAVERSION)-$(BlackBox_BUILD)
-    endif
+    BLACKBOX_VERSION_STATE := UNOFFICIAL
+    BLACKBOX_VERSION := BlackBox-OS-$(BLACKBOX_BUILD)-$(BLACKBOX_VERSION_MAIN)-$(BLACKBOX_VERSION_MAJOR).$(BLACKBOX_VERSION_MINOR)-UNOFFICIAL-$(shell date -u +%d.%m.%Y)
 endif
 
 PRODUCT_PROPERTY_OVERRIDES += \
-  ro.BlackBox.version=$(BlackBox_VERSION) \
-  ro.BlackBox.releasetype=$(BlackBox_BUILDTYPE) \
-  ro.modversion=$(BlackBox_VERSION) \
-  ro.BlackBoxlegal.url=https://blacbox-os.gq
+    ro.blackbox.version=$(BLACKBOX_VERSION) \
+    ro.blackbox.url=http://blackbox-os.gq
 
--include vendor/blackbox-priv/keys/keys.mk
+BLACKBOX_DISPLAY_VERSION := $(BLACKBOX_VERSION)
 
-BlackBox_DISPLAY_VERSION := $(BlackBox_VERSION)
-
-ifneq ($(PRODUCT_DEFAULT_DEV_CERTIFICATE),)
-ifneq ($(PRODUCT_DEFAULT_DEV_CERTIFICATE),build/target/product/security/testkey)
-  ifneq ($(BlackBox_BUILDTYPE), UNOFFICIAL)
-    ifndef TARGET_VENDOR_RELEASE_BUILD_ID
-      ifneq ($(BlackBox_EXTRAVERSION),)
-        # Remove leading dash from BlackBox_EXTRAVERSION
-        BlackBox_EXTRAVERSION := $(shell echo $(BlackBox_EXTRAVERSION) | sed 's/-//')
-        TARGET_VENDOR_RELEASE_BUILD_ID := $(BlackBox_EXTRAVERSION)
-      else
-        TARGET_VENDOR_RELEASE_BUILD_ID := $(shell date -u +%Y%m%d)
-      endif
-    else
-      TARGET_VENDOR_RELEASE_BUILD_ID := $(TARGET_VENDOR_RELEASE_BUILD_ID)
-    endif
-    BlackBox_DISPLAY_VERSION=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)
-  endif
-endif
-endif
-# Squisher Path (Test)
-SQUISHER_SCRIPT := vendor/blackbox/tools/squisher
+# statistics identity
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.blackbox.version=$(BLACKBOX_VERSION) \
+    ro.blackbox.releasetype=$(BLACKBOX_BUILDTYPE) \
+    ro.modversion=$(BLACKBOX_VERSION)
+    
 # by default, do not update the recovery with system updates
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.recovery_update=false
 
 PRODUCT_PROPERTY_OVERRIDES += \
-  ro.BlackBox.display.version=$(BlackBox_DISPLAY_VERSION)
+  ro.blackbox.display.version=$(BLACKBOX_DISPLAY_VERSION)
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
 
 -include vendor/cyngn/product.mk
+
+$(call prepend-product-if-exists, vendor/extra/product.mk)
+
 
 $(call prepend-product-if-exists, vendor/extra/product.mk)
