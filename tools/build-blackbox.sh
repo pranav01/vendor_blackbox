@@ -20,7 +20,14 @@ normal='tput sgr0'
 tput bold
 tput setaf 2
 clear
-echo -e "BlackBox OS compilation Script"
+echo -e "                   BlackBox OS compilation Script                       "
+echo -e "  ____  _               _____ _  ______   ______   __      ____   _____ "
+echo -e "|  _ \| |        /\   / ____| |/ /  _ \ / __ \ \ / /     / __ \ / ____| "
+echo -e "| |_) | |       /  \ | |    | ' /| |_) | |  | \ V /_____| |  | | (___   "
+echo -e "|  _ <| |      / /\ \| |    |  < |  _ <| |  | |> <______| |  | |\___ \  "
+echo -e "| |_) | |____ / ____ \ |____| . \| |_) | |__| / . \     | |__| |____) | "
+echo -e "|____/|______/_/    \_\_____|_|\_\____/ \____/_/ \_\     \____/|_____/  "
+
 #Setup environment now
 echo -e "Setting up environment"
 $normal
